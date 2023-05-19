@@ -13,6 +13,8 @@ const songs = require('./api/songs');
 const SongsService = require('./services/postgres/SongsService');
 const SongsValidator = require('./validator/songs');
 
+// ? playlist
+
 // ? Exceptions Types
 const ClientError = require('./exceptions/ClientError');
 
