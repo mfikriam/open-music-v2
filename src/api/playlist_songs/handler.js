@@ -35,17 +35,23 @@ class PlaylistSongsHandler {
     return response;
   }
 
-  // async getPlaylistSongsHandler(request) {
-  //   const { id: credentialId } = request.auth.credentials;
-  //   const playlists = await this._playlistSongsService.getPlaylists(credentialId);
+  async getPlaylistSongsHandler(request) {
+    const { id: credentialId } = request.auth.credentials;
+    const { id: playlistId } = request.params;
 
-  //   return {
-  //     status: 'success',
-  //     data: {
-  //       playlists,
-  //     },
-  //   };
-  // }
+    await this._playlistsService.verifyPlaylistOwner(playlistId, credentialId);
+
+    const playlist = await this._playlistsService.getPlaylistsById(playlistId, credentialId);
+    const songs = await this._playlistSongsService.getPlaylistSongsByPlaylistId(playlistId);
+    playlist.songs = songs;
+
+    return {
+      status: 'success',
+      data: {
+        playlist,
+      },
+    };
+  }
 }
 
 module.exports = PlaylistSongsHandler;
