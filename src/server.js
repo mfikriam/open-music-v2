@@ -35,7 +35,7 @@ const playlistSongs = require('./api/playlist_songs');
 const PlaylistSongsService = require('./services/postgres/PlaylistSongsService');
 const PlaylistSongsValidator = require('./validator/playlist_songs');
 
-// ? playlist songs activities
+// ? playlist song activities
 const playlistSongActivities = require('./api/playlist_song_activities');
 const PlaylistSongActivitiesService = require('./services/postgres/PlaylistSongActivitiesService');
 const PlaylistSongActivitiesValidator = require('./validator/playlist_song_activities');
@@ -130,7 +130,9 @@ const init = async () => {
         playlistSongsService,
         playlistsService,
         songsService,
-        validator: PlaylistSongsValidator,
+        playlistSongActivitiesService,
+        playlistSongsValidator: PlaylistSongsValidator,
+        playlistSongActivitiesValidator: PlaylistSongActivitiesValidator,
       },
     },
     {

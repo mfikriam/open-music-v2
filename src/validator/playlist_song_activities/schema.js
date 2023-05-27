@@ -5,7 +5,6 @@ const PlaylistSongActivityPayloadSchema = Joi.object({
   songId: Joi.string().required(),
   userId: Joi.string().required(),
   action: Joi.string().required(),
-  time: Joi.date().timestamp().required(),
 });
 
 module.exports = { PlaylistSongActivityPayloadSchema };
