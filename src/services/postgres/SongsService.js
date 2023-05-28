@@ -28,10 +28,10 @@ class SongsService {
     return result.rows[0].id;
   }
 
-  async getSongs(title, performer) {
+  async getSongs(title = '', performer = '') {
     const query = {
-      text: 'SELECT id, title, performer FROM songs WHERE ($1::text IS NULL OR title ILIKE $1) AND ($2::text IS NULL OR performer ILIKE $2)',
-      values: [title ? `%${title}%` : null, performer ? `%${performer}%` : null],
+      text: 'SELECT id, title, performer FROM songs WHERE title ILIKE $1 and performer ILIKE $2',
+      values: [`%${title}%`, `%${performer}%`],
     };
 
     const result = await this._pool.query(query);
